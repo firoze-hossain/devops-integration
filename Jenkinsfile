@@ -20,8 +20,8 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhub-login', variable: 'Token')]) {
-                   bat 'docker login -u firozehossain01 -p ${Token}'
+                   withCredentials([string(credentialsId: 'dockerhub-login', variable: 'docker')]) {
+                   bat 'docker login -u firozehossain01 -p ${docker}'
 
 }
                    bat 'docker push firozehossain01/devops-integration'
