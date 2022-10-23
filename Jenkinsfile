@@ -13,7 +13,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t firozehossain01/devops-integration .'
+                dockerImage = docker.build devops-integration
                 }
             }
         }
@@ -26,8 +26,7 @@ pipeline {
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
                                dockerImage.push("latest")
 
-}
-                  bat 'docker push firozehossain01/devops-integration'
+}           
                }
            }
         }
