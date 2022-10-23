@@ -1,4 +1,8 @@
 pipeline {
+environment {
+    dockerimagename = "firozehossain01/spring-boot-app"
+    dockerImage = ""
+    }
     agent {label 'master'}
     tools{
         maven 'maven_3.8.6'
@@ -13,7 +17,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                dockerImage = docker.build devops-integration
+                dockerImage = docker.build dockerimagename
                 }
             }
         }
@@ -26,7 +30,7 @@ pipeline {
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
                                dockerImage.push("latest")
 
-}           
+}
                }
            }
         }
