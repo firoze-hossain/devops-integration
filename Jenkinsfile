@@ -17,17 +17,17 @@ pipeline {
                 }
             }
         }
-        stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([usernameColonPassword(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                   bat 'docker login -u firozehossain01 -p ${dockerhubpwd}'
+        //stage('Push image to Hub'){
+            //steps{
+                //script{
+                   //withCredentials([usernameColonPassword(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                   //bat 'docker login -u firozehossain01 -p ${dockerhubpwd}'
 
-}
-                   bat 'docker push firozehossain01/devops-integration'
-                }
-            }
-        }
+//}
+                  // bat 'docker push firozehossain01/devops-integration'
+              //  }
+           // }
+      //  }
         stage('Deploy to k8s'){
             steps{
                 script{
